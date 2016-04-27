@@ -38,15 +38,6 @@ class FifoTest extends TestCase
         $this->assertEquals($fifo->get($key1), $value1);
     }
 
-    function testMassivePut() {
-        $numEntries = 90000;
-        $fifo = new Fifo($numEntries);
-        while($numEntries > 0) {
-            $fifo->put($numEntries - 899999, 'some value...');
-            $numEntries--;
-        }
-    }
-
     function testRemove() {
         $fifo = new Fifo(1000);
         $fifo->put('key1', 'value1');
