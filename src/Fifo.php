@@ -56,11 +56,10 @@ class Fifo
      */
     public function put($key, $value)
     {
-        if ($this->overCapacity()) {
-            $this->remove(array_shift($this->order));
+        if (!$this->exists($key) && $this->overCapacity()) {
+            $this->remove(array_keys($this->cache)[0]);
         }
 
-        $this->order[] = $key;
         $this->cache[$key] = $value;
     }
 
@@ -84,6 +83,6 @@ class Fifo
      */
     protected function overCapacity()
     {
-        return count($this->order) + 1 > $this->capacity;
+        return count(array_keys($this->cache)) + 1 > $this->capacity;
     }
 }
