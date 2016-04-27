@@ -19,11 +19,6 @@ class Fifo
     protected $cache = [];
 
     /**
-     * @var array
-     */
-    protected $order = [];
-
-    /**
      * Fifo constructor.
      * @param int $capacity
      */
