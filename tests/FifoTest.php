@@ -61,9 +61,9 @@ class FifoTest extends TestCase
         $fifo->put($key2, $value2);
         $fifo->put($key3, $value3);
         // access some elements more often
-        $fifo->get($key2);
-        $fifo->get($key2);
-        $fifo->get($key3);
+        $this->assertEquals($fifo->get($key2), $value2);
+        $this->assertEquals($fifo->get($key2), $value2);
+        $this->assertEquals($fifo->get($key3), $value3);
         // put a new entry to force cache to discard the oldest
         $fifo->put($key4, $value4);
         $this->assertNull($fifo->get($key1));
@@ -82,9 +82,9 @@ class FifoTest extends TestCase
         $fifo->put($key2, $value2);
         $fifo->put($key3, $value3);
         // access some elements more often
-        $fifo->get($key2);
-        $fifo->get($key2);
-        $fifo->get($key3);
+        $this->assertEquals($fifo->get($key1), $value1);
+        $this->assertEquals($fifo->get($key2), $value2);
+        $this->assertEquals($fifo->get($key3), $value3);
         // put a new entry to force cache to discard the oldest
         $value4 = 'value4forkey4';
         $fifo->put($key3, $value4);
